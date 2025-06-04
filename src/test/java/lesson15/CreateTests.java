@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class CreateTests {
     @Test
-    void successfulCreateTest () {
+    void successfulCreateTest() {
         String createData = "{\"name\": \"igor\", \"job\": \"qa\"}";
 
         given()
@@ -17,11 +17,9 @@ public class CreateTests {
                 .body(createData)
                 .contentType(JSON)
                 .log().uri()
-
-                .when()
+        .when()
                 .post("https://reqres.in/api/users")
-
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(201)
