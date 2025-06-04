@@ -37,11 +37,9 @@ public class RegisterTests {
                 .body(registerData)
                 .contentType(JSON)
                 .log().uri()
-
-                .when()
+        .when()
                 .post("https://reqres.in/api/register")
-
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(400)
@@ -56,11 +54,9 @@ public class RegisterTests {
                 .body(registerData)
                 .contentType(JSON)
                 .log().uri()
-
-                .when()
+        .when()
                 .post("https://reqres.in/api/register")
-
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(401)

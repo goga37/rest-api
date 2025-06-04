@@ -17,11 +17,9 @@ public class UpdateTest {
                 .body(registerData)
                 .contentType(JSON)
                 .log().uri()
-
-                .when()
+        .when()
                 .put("https://reqres.in/api/users/301")
-
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
