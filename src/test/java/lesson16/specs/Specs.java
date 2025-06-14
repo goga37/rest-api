@@ -2,11 +2,13 @@ package lesson16.specs;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import static helpers.CustomAllureListener.withCustomTemplates;
 
 import static io.restassured.http.ContentType.JSON;
 
 public class Specs {
     public static RequestSpecification requestWithApiKey = new RequestSpecBuilder()
+            .addFilter(withCustomTemplates())
             .setBaseUri("https://reqres.in")
             .setBasePath("/api")
             .addHeader("x-api-key", "reqres-free-v1")
@@ -15,6 +17,7 @@ public class Specs {
             .build();
 
     public static RequestSpecification requestWithoutApiKey = new RequestSpecBuilder()
+            .addFilter(withCustomTemplates())
             .setBaseUri("https://reqres.in")
             .setBasePath("/api")
             .setContentType(JSON)
