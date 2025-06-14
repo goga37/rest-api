@@ -48,3 +48,9 @@ tasks.withType(Test) {
         }
     }
 }
+
+task demoApi_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("demoApi")
+    }
+}
