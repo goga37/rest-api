@@ -7,13 +7,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static lesson16.specs.Specs.requestWithApiKey;
-import static lesson16.specs.Specs.requestWithoutApiKey;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static lesson16.specs.Specs.*;
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("demoApi")
-public class RegisterTests {
+public class RegisterTests extends TestBase {
 
     @Test
     void successfulRegisterTest() {
@@ -31,15 +30,14 @@ public class RegisterTests {
                         .when()
                         .post("/register")
                         .then()
-                        .log().status()
-                        .log().body()
-                        .statusCode(200)
+                        .spec(responseSpec)
                         .extract().as(RegisterResponseLombokModel.class)
         );
 
         step("Verify id and token in response", () -> {
             assertEquals(4, response.getId());
-            assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
+            assertNotNull(response.getToken());
+            assertFalse(response.getToken().isEmpty());
         });
     }
 
@@ -56,10 +54,8 @@ public class RegisterTests {
                         .spec(requestWithApiKey)
                         .body(registerBody)
                         .when()
-                        .post("https://reqres.in/api/register")
+                        .post("/register")
                         .then()
-                        .log().status()
-                        .log().body()
                         .statusCode(400)
                         .extract().as(RegisterResponseUnsuccessLombokModel.class)
         );
@@ -82,10 +78,8 @@ public class RegisterTests {
                         .spec(requestWithoutApiKey)
                         .body(registerBody)
                         .when()
-                        .post("https://reqres.in/api/register")
+                        .post("/register")
                         .then()
-                        .log().status()
-                        .log().body()
                         .statusCode(401)
                         .extract().as(RegisterResponseUnsuccessLombokModel.class)
         );

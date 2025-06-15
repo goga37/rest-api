@@ -20,8 +20,6 @@ public class SingleUserTests {
                         .when()
                         .get("/users/2")
                         .then()
-                        .log().status()
-                        .log().body()
                         .statusCode(200)
                         .extract().as(SingleUserResponse.class)
         );
@@ -46,10 +44,8 @@ public class SingleUserTests {
                 given()
                         .spec(requestWithApiKey)
                         .when()
-                        .get("https://reqres.in/api/users/23")
+                        .get("/users/23")
                         .then()
-                        .log().status()
-                        .log().body()
                         .statusCode(404)
         );
     }

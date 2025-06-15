@@ -16,10 +16,8 @@ public class DeleteTests {
                 given()
                         .spec(requestWithApiKey)
                         .when()
-                        .delete("https://reqres.in/api/users/2")
+                        .delete("/users/2")
                         .then()
-                        .log().status()
-                        .log().body()
                         .statusCode(204)
         );
     }
