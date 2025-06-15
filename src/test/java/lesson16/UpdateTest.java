@@ -6,12 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static lesson16.specs.Specs.requestWithApiKey;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static lesson16.specs.Specs.responseUpdateTest;
 import static io.qameta.allure.Allure.step;
 
 @Tag("demoApi")
-public class UpdateTest {
+public class UpdateTest extends TestBase {
 
     @Test
     void successfulUpdateUserTest() {
@@ -29,10 +28,7 @@ public class UpdateTest {
                         .when()
                         .put("/users/301")
                         .then()
-                        .statusCode(200)
-                        .body("name", is(updateBody.getName()))
-                        .body("job", is(updateBody.getJob()))
-                        .body("updatedAt", notNullValue())
+                        .spec(responseUpdateTest(updateBody))
         );
     }
 }

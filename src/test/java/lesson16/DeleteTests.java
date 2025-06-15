@@ -8,7 +8,7 @@ import static lesson16.specs.Specs.requestWithApiKey;
 import static io.qameta.allure.Allure.step;
 
 @Tag("demoApi")
-public class DeleteTests {
+public class DeleteTests extends TestBase {
 
     @Test
     void unsuccessfulDeleteTest() {

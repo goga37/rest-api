@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static io.qameta.allure.Allure.step;
 
 @Tag("demoApi")
-public class SingleUserTests {
+public class SingleUserTests extends TestBase {
 
     @Test
     void successfulSingleUserTest() {
